@@ -1,1 +1,21 @@
-<h1>Tried something for the last hw before (OptionsPattern in ASP.Net) - not started with this one yet</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">{{ title }}</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <span (click)="startNewGame()">Start a new game</span>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <button class="btn btn-primary me-4" type="submit" data-bs-toggle="modal" data-bs-target="#logModal">Show logs</button>
+        <input [(ngModel)]="newGameId" class="me-2" type="text" placeholder="game id">
+        <button (click)="resumeGame()" class="btn btn-outline-success" type="submit">Resume existing game</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<app-new-game *ngIf="showCreateNewGame" (hideComponent)="hideCreateNewGame($event)"></app-new-game>
+<app-gameboard *ngIf="!showCreateNewGame"></app-gameboard>
+<app-logs></app-logs>

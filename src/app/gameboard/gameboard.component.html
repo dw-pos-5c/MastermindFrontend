@@ -1,0 +1,47 @@
+<div class="container">
+  <h1>Hi {{ name }}! Your game ID is {{ id }}</h1>
+  <div *ngFor="let attempt of attempts" class="d-flex flex-row bd-highlight mb-3">
+    <div class="p-2 bd-highlight">Attempt {{ attempt.currentTry }}/{{ tries }}</div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [selectedColor]="attempt.colorPattern[0]"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [selectedColor]="attempt.colorPattern[1]"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [selectedColor]="attempt.colorPattern[2]"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [selectedColor]="attempt.colorPattern[3]"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      Correct color: {{ attempt.correctColors }} <br>
+      Correct color and position: {{ attempt.correctColorsAndPositions }}
+    </div>
+  </div>
+  <div class="d-flex flex-row bd-highlight mb-3" *ngIf="!(lost || won)">
+    <div class="p-2 bd-highlight">Attempt {{ currentTry }}/{{ tries }}</div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [availableColors]="colors" [selectedColor]="chosenColors[0]" (colorChosen)="chosen(0, $event)"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [availableColors]="colors" [selectedColor]="chosenColors[1]"  (colorChosen)="chosen(1, $event)"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [availableColors]="colors" [selectedColor]="chosenColors[2]"  (colorChosen)="chosen(2, $event)"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      <app-attempt [availableColors]="colors" [selectedColor]="chosenColors[3]"  (colorChosen)="chosen(3, $event)"></app-attempt>
+    </div>
+    <div class="p-2 bd-highlight">
+      <button (click)="submitAttempt()" [disabled]="!chosenColors.length || chosenColors.length < 4" class="btn btn-primary">Submit attempt</button>
+    </div>
+  </div>
+  <div *ngIf="won">
+    <h1>Great you have solved the pattern :)</h1>
+  </div>
+  <div *ngIf="lost">
+    <h1>Sorry, no more tries left :(</h1>
+  </div>
+</div>
+

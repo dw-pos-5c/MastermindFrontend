@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Start new game</h1>
+
+  <div class="row" [formGroup]="newGameForm">
+    <div class="col">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="name" placeholder="Name">
+        <label for="floatingInput">Enter your name</label>
+      </div>
+    </div>
+    <div class="col">
+      <div class="form-floating">
+        <input type="number" class="form-control" id="floatingPassword" formControlName="tries" placeholder="6">
+        <label for="floatingPassword">Enter the number of tries (6-12)</label>
+      </div>
+    </div>
+  </div>
+  <button (click)="newGame()" class="btn btn-primary" [disabled]="!newGameForm.valid">Start new game</button>
+</div>
